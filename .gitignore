@@ -5,3 +5,5 @@ dist
 coverage
 .idea
 *.directory
+*.b.sublime-workspace
+*.b.sublime-project
