@@ -1,0 +1,12 @@
+<!--if you'd like to have the navbar and or header on every page, move it up a level to app.html!-->
+<main-header></main-header>
+<navbar></navbar>
+<div class="content-container">
+  <h1>Welcome</h1>
+  <div><i>You can find me in {{ vm.name }}.html.</i></div>
+  <br><br><br>
+  <div>The list below was an API request at <i>/cars/brands</i></div>
+  <ul>
+    <li ng-repeat="brand in vm.carBrands">{{brand}}</li>
+  </ul>
+</div>
