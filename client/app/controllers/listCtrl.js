@@ -65,9 +65,9 @@ function listFactory(apiService){
 
     this.delete = function(post){
         return this.api.removePost({_id: post._id})
-            .then(function(likes){
+            .then(function(){
                 var index = _.findIndex(self.posts, function(item) { 
-                    return item.id == post.id 
+                    return item._id == post._id 
                 });
                 if(index >= 0){
                     self.posts.splice(index, 1)
@@ -75,10 +75,10 @@ function listFactory(apiService){
             });
     }
 
-    this.save = function(newPost, post){
+    this.save = function(newPost, post, index){
         return this.api.editPost(newPost)
             .then(function(_post){
-                post = _post;
+                self.posts[index] = _post;
             });
     }
 

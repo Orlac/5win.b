@@ -7,6 +7,6 @@
     	{{post.text}}	
     </span>
     <comment-form ng-if="ctrl.isEdit" 
-    	post="post" on-post="ctrl.edit(newPost)" template="edit"></comment-form>
+    	post="post" on-post="ctrl.edit(newPost, post)" template="edit"></comment-form>
 
 </div>

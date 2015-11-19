@@ -16,7 +16,7 @@
                         post="post" 
                         on-like="ctrl.commentFactory.like(post)"
                         on-delete="ctrl.commentFactory.delete(post)"
-                        on-edit="ctrl.commentFactory.save(newPost)"
+                        on-edit="ctrl.commentFactory.save(newPost, post, $index)"
                         is-owner="ctrl.commentFactory.isOwner(post)"></comment-item>
                 </li>
             </ul>

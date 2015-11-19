@@ -42,8 +42,8 @@ function controller($scope, $element, $attrs){
         $scope.onDelete({post: $scope.post});
     }
 
-    this.edit = function(newPost){
-        return $scope.onEdit({newPost: newPost})
+    this.edit = function(newPost, post){
+        return $scope.onEdit({newPost: newPost, post: post})
             .then(function(){
                 self.isEdit = false;
             });

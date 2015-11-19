@@ -62,11 +62,12 @@ var deleteComment = function (req, res, next) {
     return res.status(403);
   }
   var Post = mongoose.model('Comment');
+
   Post.findOne({ _id: req.query._id, uid: req.user.id }).remove().exec(function (err, docs) {
       if (err) {
         return res.status(500).send(err);
       }
-      return res.status(200);
+      return res.status(200).send({});
   });
 
 };
