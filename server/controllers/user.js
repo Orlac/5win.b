@@ -11,7 +11,7 @@ var logout = function (req, res, next) {
 var getUser = function(req, res, next) {
     
     if(req.user && req.user.id){
-      res.send(req.user);   
+      res.send( { id: req.user.id } );   
     }else{
       return res.send(403); 
     }

@@ -44,6 +44,10 @@ function listFactory(apiService){
     this.posts = [];
     var self = this;
 
+    this.isOwner = function(post){
+        return post.uid == this.api.uid;
+    }
+
     this.add = function(newPost){
         return this.api.createPost(newPost)
             .then(function(_post){
@@ -53,14 +57,14 @@ function listFactory(apiService){
     }
 
     this.like = function(post){
-        return this.api.likePost({id: post.id})
-            .then(function(likes){
-                post.likes = likes;
+        return this.api.likePost({_id: post._id})
+            .then(function(_post){
+                post.likes = _post.likes;
             })
     }
 
     this.delete = function(post){
-        return this.api.removePost({id: post.id})
+        return this.api.removePost({_id: post._id})
             .then(function(likes){
                 var index = _.findIndex(self.posts, function(item) { 
                     return item.id == post.id 

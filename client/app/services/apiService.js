@@ -20,7 +20,7 @@ commentFactory.$inject = ['$resource'];
 function commentFactory($resource){
     return $resource('/comment', {}, {
         query: {method: 'GET', params: {page: '@page'}, isArray: true },
-        post: {method: 'POST', /*params: {text: '@text'},*/ isArray: true },
+        post: {method: 'POST', /*params: {text: '@text'},*/ /*isArray: true*/ },
         edit: {method: 'PUT', /*params: {id: '@id', text: '@text'},*/  },
         remove: {method: 'DELETE', params: {id: '@id'} },
         like: {method: 'POST', /*params: {id: '@id'},*/ url: '/comment/like' }
@@ -32,6 +32,9 @@ function apiService($q, userFactory, commentFactory){
 
     this.userFactory = userFactory;
     this.commentFactory = commentFactory;
+    this.uid = null;
+
+    var self = this;
 
     /**
      * check is no auth user
@@ -55,7 +58,10 @@ function apiService($q, userFactory, commentFactory){
      * @return $promise
      */
     this.checkLogin = function(){
-        return this.userFactory.query().$promise;
+        return this.userFactory.query().$promise
+            .then(function(user){
+                self.uid = user.id;
+            });
     }
 
     /**
@@ -64,7 +70,10 @@ function apiService($q, userFactory, commentFactory){
      * @return $promise
      */
     this.login = function(data){
-        return this.userFactory.login(data).$promise;
+        return this.userFactory.login(data).$promise
+            .then(function(user){
+                self.uid = user.id;
+            });
     }
 
     /**

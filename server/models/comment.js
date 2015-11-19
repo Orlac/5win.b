@@ -22,7 +22,8 @@ var CommentSchema = new Schema({
     } 
   },
   updated: { type: Date, default: Date.now },
-  likes: { type: Number },
+  uid: { type: Number, required: true  },
+  likes: { type: Number, default: 0 },
   userLikes: [Number],
 });
 
@@ -35,7 +36,7 @@ var CommentSchema = new Schema({
  */
 
 CommentSchema.method('getIsLikeUser', function(uid){
-	return _.indexOf(this.userLikes, uid) > 0; 
+	return _.indexOf(this.userLikes, uid) >= 0; 
 });
 
 CommentSchema.method('like', function(uid){
@@ -43,7 +44,7 @@ CommentSchema.method('like', function(uid){
 		this.likes--;
 		this.userLikes.splice(_.indexOf(this.userLikes, uid), 1);
 	}else{
-		this.likes++;
+    this.likes++;
 		this.userLikes.push(uid);
 	}
 });

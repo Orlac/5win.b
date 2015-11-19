@@ -52,6 +52,7 @@ module.exports = function(app, config, passport, webroot) {
   // init models
   var models = glob.sync(webroot + '/server/models/*.js');
   models.forEach(function (model) {
+    console.log('model', model);
     require(model);
   });
 

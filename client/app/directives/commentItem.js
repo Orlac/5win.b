@@ -28,7 +28,8 @@ controller.$inject = ['$scope', '$element', '$attrs'];
 function controller($scope, $element, $attrs){
 
     this.isEdit = false;
-
+    var self = this;
+    $scope.post.likes = $scope.post.likes || 0;  
     this.canDelete = function(){
         return $scope.isOwner;
     }
@@ -44,7 +45,7 @@ function controller($scope, $element, $attrs){
     this.edit = function(newPost){
         return $scope.onEdit({newPost: newPost})
             .then(function(){
-                this.isEdit = false;
+                self.isEdit = false;
             });
     }
 

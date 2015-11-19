@@ -41,7 +41,7 @@ function controller($scope, $element, $attrs, $timeout){
             .catch(function(err){
                 $scope.isError = true;
                 $timeout(function(){
-                    $scope.isError = false;
+                    // $scope.isError = false;
                 }, 5000);
             })
     }
