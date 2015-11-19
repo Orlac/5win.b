@@ -17,22 +17,22 @@ var getComments = function (req, res, next) {
 };
 
 var postComment = function (req, res, next) {
-    res.send(200, []);
+    res.status(200).send([]);
     // res.send(200, data);
 };
 
 var editComment = function (req, res, next) {
-    res.send(200, []);
+    res.status(200).send([]);
     // res.send(200, data);
 };
 
 var deleteComment = function (req, res, next) {
-    res.send(200, []);
+    res.status(200).send([]);
     // res.send(200, data);
 };
 
 var like = function (req, res, next) {
-    res.send(200, []);
+    res.status(200).send([]);
     // res.send(200, data);
 };
 

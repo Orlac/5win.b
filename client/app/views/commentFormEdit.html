@@ -1,0 +1,11 @@
+<form action="javascript:;" name="addForm" ng-submit="ctrl.post()" ng-class="{{ isError? 'bg-danger' : '' }}">
+    <div class="form-group">
+        <label >Text</label>
+        <textarea class="form-control" rows="3" 
+            required="true"
+            ng-minlength="10"
+            ng-maxlength="140"
+            placeholder="Text" ng-model="newPost.text"></textarea>
+    </div>
+    <button ng-disabled="!addForm.$valid" type="submit" class="btn btn-default">Save</button>
+</form>

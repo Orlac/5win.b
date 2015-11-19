@@ -9,6 +9,7 @@
 	require('angular-ui-bootstrap');
 	require('angular-ui-router');
 	require('angular-resource');
+	require('lodash');
 	
 	
 	// CSS

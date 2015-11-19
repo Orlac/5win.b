@@ -1,0 +1,12 @@
+<div>
+    <a href="javascript:;" ng-click="ctrl.like()" class="badge">{{post.likes}}</a>
+    <span class="badge">{{post.updated | date : 'dd.MM.yyyy HH:mm:ss'}}</span>
+    <a ng-if="ctrl.canDelete()" ng-click="ctrl.delete()" href="javascript:;" class="badge">Delete</a>
+    <a ng-if="ctrl.canEdit()" ng-click="ctrl.isEdit=!ctrl.isEdit" href="javascript:;" class="badge">Edit</a>
+    <span ng-if="!ctrl.isEdit">
+    	{{post.text}}	
+    </span>
+    <comment-form ng-if="ctrl.isEdit" 
+    	post="postt" on-post="ctrl.edit(newPost)" template="add"></comment-form>
+
+</div>
