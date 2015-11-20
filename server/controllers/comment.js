@@ -5,8 +5,19 @@ var mongoose = require('mongoose');
 var passport = require('passport');  
 
 var getComments = function (req, res, next) {
+
+  var page = req.query.page || 1;
+  var sort = req.query.sort || 'updated';
+  var target = (req.query.target || -1)*1;
+
+  var sortObg = {};
+  sortObg[sort] = target;
+
+  console.log('sortObg', sortObg);
+
 	mongoose.model('Comment')
 		.find()
+    .sort(sortObg)
 		.paginate(req.query.page || 1, 10)
 		.exec(function(err, docs) {
 			if(err){

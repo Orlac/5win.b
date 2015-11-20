@@ -5,14 +5,18 @@ require('../services/pageService.js');
 require('../directives/logoutButton.js');
 require('../directives/commentForm.js');
 require('../directives/commentItem.js');
+require('../directives/sortButtons.js');
+// require('../directives/infiniteScroll.js');
+
+require('lr-infinite-scroll');
 
 angular.module('app.list', 
-    ['app.apiService', 'app.pageService', 'app.logoutButton', 'app.commentItem', 'app.commentForm'])
+    ['app.apiService', 'app.pageService', 'app.logoutButton', 'app.commentItem', 'app.commentForm', 'app.sortButtons', /*'app.infiniteScroll', */'lrInfiniteScroll'])
     .controller('listCtrl', controller)
     .factory('listFactory', listFactory);
 
-controller.$inject = ['pageService', 'listFactory', 'apiService'];
-function controller(pageService, commentFactory, apiService){
+controller.$inject = ['$scope', 'pageService', 'listFactory', 'apiService'];
+function controller($scope, pageService, commentFactory, apiService){
 
 
     this.api = apiService;
@@ -34,6 +38,10 @@ function controller(pageService, commentFactory, apiService){
             });        
     }
 
+    $scope.next = function(){
+        return self.commentFactory.next();
+    }
+
 } 
 
 listFactory.$inject = ['apiService'];
@@ -42,10 +50,24 @@ function listFactory(apiService){
     this.api = apiService;
     this.post = {};
     this.posts = [];
+    this.curPage = 1;
+
+    // this.sortData = {};
+    this.sort = 'updated';
+    this.sortTarget = -1;
+
     var self = this;
 
     this.isOwner = function(post){
         return post.uid == this.api.uid;
+    }
+
+    this.setSort = function(_sort){
+        this.sort = _sort;
+        this.sortTarget = -this.sortTarget;
+        this.curPage = 1;
+        self.posts = [];
+        this.load(this.curPage);
     }
 
     this.add = function(newPost){
@@ -82,10 +104,19 @@ function listFactory(apiService){
             });
     }
 
+    this.next = function(){
+        this.curPage++;
+        return this.load(this.curPage);
+    }
+
     this.load = function(page){
-        this.api.posts({page: page || 1})
+        this.api.posts({page: page || 1, sort: this.sort, target: this.sortTarget})
             .then(function(data){
-                self.posts = data;
+                _.each(data, function(item){
+                    self.posts.push(item);    
+                })
+                return self.posts;
+                // return self.posts = data;
             })
     }
     return this;

@@ -13,19 +13,14 @@ var distPath = path.resolve(__dirname, 'dist');
 
 module.exports = {
   // devtool: 'eval',
-  devtool: "#inline-source-map",
+  // devtool: "#inline-source-map",
+  devtool: 'source-map',
   entry: {
     // define webpack hot server to push changes automatically
     hotserver: 'webpack-hot-middleware/client?reload=true',
 
     // application entry path
     mainApp: entryPath + '/main.js',
-
-    // second entry path
-    // section2: entryPath + '/section2/app.js',
-
-    // put vendor libraries into their own file
-    // vendor: ['jquery', 'angular', 'angular-ui-router', 'angular-ui-bootstrap', 'normalize.css', 'bootstrap']
   },
 
   // output generated bundled files

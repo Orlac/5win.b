@@ -1,0 +1,9 @@
+<div class="btn-group" role="group" >
+    <a href="javascript:;" ng-repeat="(key, value) in sortsData" class="btn btn-default" 
+    	ng-click="ctrl.click(key)"
+    	ng-class="(sortModel==key)? 'active' : ''">{{::value}} 
+
+		<i ng-if="(sortModel==key) && (sortTarget < 0)" class="glyphicon glyphicon-arrow-up"></i>
+		<i ng-if="(sortModel==key) && (sortTarget > 0)" class="glyphicon glyphicon-arrow-down"></i>
+	</a>
+</div>
