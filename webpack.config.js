@@ -10,6 +10,9 @@ var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var entryPath = path.resolve(__dirname, 'client', 'app');
 var templatePath = path.resolve(__dirname, 'client', 'index.tpl.html');
 var distPath = path.resolve(__dirname, 'dist');
+var bower_modules_dir = path.resolve(__dirname, 'bower_components');
+
+// console.log(require(__dirname + '/webpack.clientdeps'));
 
 module.exports = {
   // devtool: 'eval',
@@ -21,6 +24,17 @@ module.exports = {
 
     // application entry path
     mainApp: entryPath + '/main.js',
+
+    vendor: require(__dirname + '/webpack.clientdeps')
+    // vendor: [ 'angular',
+    //           'angular-resource',
+    //           'angular-ui-bootstrap',
+    //           'angular-ui-router',
+    //           'lodash',
+    //           'lr-infinite-scroll',
+    //           'promise' 
+    //           ]
+
   },
 
   // output generated bundled files
@@ -44,7 +58,7 @@ module.exports = {
       template: templatePath,
       inject: 'body',
       filename: 'index.html',
-      chunks: [/*'vendor',*/'hotserver','mainApp']
+      chunks: ['vendor', 'hotserver', 'mainApp']
     }),
 
     // define second entry path
@@ -75,7 +89,8 @@ module.exports = {
     ],
     loaders: [
       // transpile ES6 -> ES5
-      {test: /\.js?$/, exclude: /node_modules/, loader: 'babel'},
+      // {test: /\.js?$/, exclude: /node_modules/, loader: 'babel'},
+      // {test: /\.js?$/, exclude: /bower_components/, loader: 'babel'},
 
       // loader for JSON files
       {test: /\.json?$/, loader: 'json'},

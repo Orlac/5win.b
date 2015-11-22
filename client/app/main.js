@@ -1,15 +1,16 @@
 (function(window){
 	'use strict';
 	
+	// Это все есть в dependencies
 	
 	// Libs
-	window.jQuery = window.$ = require('jquery');
-	require('bootstrap');
-	window.angular = require('angular');
-	require('angular-ui-bootstrap');
-	require('angular-ui-router');
-	require('angular-resource');
-	require('lodash');
+	// window.jQuery = window.$ = require('jquery');
+	// require('bootstrap');
+	// window.angular = require('angular');
+	// require('angular-ui-bootstrap');
+	// require('angular-ui-router');
+	// require('angular-resource');
+	// require('lodash');
 	
 	
 	// CSS

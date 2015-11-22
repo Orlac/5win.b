@@ -19,6 +19,7 @@ module.exports = {
   entry: {
     // application entry path
     mainApp: entryPath + '/main.js',
+    vendor: require(__dirname + '/webpack.clientdeps')
   },
 
   // output each bundle with with their name and a hash for cache busting

@@ -8,7 +8,7 @@ require('../directives/commentItem.js');
 require('../directives/sortButtons.js');
 // require('../directives/infiniteScroll.js');
 
-require('lr-infinite-scroll');
+// require('lr-infinite-scroll');
 
 angular.module('app.list', 
     ['app.apiService', 'app.pageService', 'app.logoutButton', 'app.commentItem', 'app.commentForm', 'app.sortButtons', /*'app.infiniteScroll', */'lrInfiniteScroll'])
